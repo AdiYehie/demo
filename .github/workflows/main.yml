@@ -20,7 +20,7 @@ jobs:
           COUNTER=1
         fi
           NEWTAG=$((COUNTER + 1))
-          echo $NEWTAG >> .counter
+          echo $NEWTAG > .counter
           echo "Counter value is: $COUNTER"
           echo "NEWTAG value is: $NEWTAG.0"
           echo "Counter=$COUNTER" >> $GITHUB_ENV
@@ -37,6 +37,8 @@ jobs:
       run: |
         echo "${{ secrets.DOCKERHUBUSERNAME }} ${{ secrets.DOCKERHUBTOKEN }}"
         sudo docker tag webapp:$NEWTAG.0 adiyehie/webapp:$NEWTAG.0
+        if [ -z "${{ secrets.DOCKERHUBUSERNAME }}" ]; then echo "DOCKERHUBUSERNAME is empty"; else echo "DOCKERHUBUSERNAME is set"; fi
+        echo ${{ secrets.DOCKERHUBUSERNAME }} > filecheck
         sudo docker push webapp:$NEWTAG.0
 
     - name: Run Ansible Playbook for Deployment
