@@ -24,13 +24,14 @@ jobs:
           echo "Counter value is: $COUNTER"
           echo "NEWTAG value is: $NEWTAG.0"
           echo "Counter=$COUNTER" >> $GITHUB_ENV
+          echo "NEWTAG=$NEWTAG" >> $GITHUB_ENV
           echo $(whoami)
           echo $(pwd)
           
     - name: Build Docker image
       run: |
         cd basicwebapp/actions-runner/
-        sudo docker build -t webapp:$NEWTAG .
+        sudo docker build -t webapp:$NEWTAG.0
 
     - name: Push Docker image to Docker Hub 
       run: |
