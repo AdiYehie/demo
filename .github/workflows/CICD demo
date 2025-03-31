@@ -1,0 +1,37 @@
+name: Build and Deploy Website with Ansible
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build_and_deploy:
+    runs-on: centos8
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Checkout the repository code
+    - name: Set up the counter
+      run: |
+        COUNTER_FILE=".counter"
+        if [ -f "$COUNTER_FILE" ]; then
+          COUNTER=$(cat "$COUNTER_FILE")
+        else
+          COUNTER=0
+        fi
+          echo "Counter value is: $COUNTER"
+          echo "Counter=$COUNTER" >> $GITHUB_ENV
+          
+    - name: Build Docker image
+      run: |
+        docker build -t webapp:$COUNTER .
+
+    - name: Push Docker image to Docker Hub 
+      run: |
+        docker tag webapp:$COUNTER adiyehie/webapp:$COUNTER
+        docler push webapp:$COUNTER
+
+    - name: Run Ansible Playbook for Deployment
+      run: |
+        # Run the Ansible playbook to deploy to the VM
+        ansible-playbook -i inventory.ini deploy-playbook.yml
