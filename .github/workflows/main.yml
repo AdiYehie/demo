@@ -46,4 +46,4 @@ jobs:
         # Change image get in the playbook
         sed -i "s/webapp:${COUNTER}.0/webapp:${NEWTAG}.0/g" deploy-playbook.yml
         # Run the Ansible playbook to deploy to the VM
-        ansible-playbook -i inventory.ini deploy-playbook.yml
+        ansible-playbook -i inventory.ini deploy-playbook.yml -u vagrant
