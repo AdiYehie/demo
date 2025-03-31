@@ -35,7 +35,7 @@ jobs:
 
     - name: Push Docker image to Docker Hub 
       run: |
-        cho "Token length is: $(echo -n "${{ secrets.DOCKERHUBTOKEN }}" | wc -c) characters"
+        echo "Token length is: $(echo -n "${{ secrets.DOCKERHUBTOKEN }}" | wc -c) characters"
         sudo docker tag webapp:$NEWTAG.0 adiyehie/webapp:$NEWTAG.0    
         echo ${{ secrets.DOCKERHUBUSERNAME }} >> filecheck2
         sudo docker push webapp:$NEWTAG.0
