@@ -20,7 +20,7 @@ jobs:
           COUNTER=1
         fi
           NEWTAG=$((COUNTER + 1))
-           echo $NEWTAG >> .counter
+          echo $NEWTAG >> .counter
           echo "Counter value is: $COUNTER"
           echo "NEWTAG value is: $NEWTAG.0"
           echo "Counter=$COUNTER" >> $GITHUB_ENV
@@ -31,7 +31,7 @@ jobs:
     - name: Build Docker image
       run: |
         cd basicwebapp/actions-runner/
-        sudo docker build -t webapp:$NEWTAG.0
+        sudo docker build -t webapp:${NEWTAG}.0 .
 
     - name: Push Docker image to Docker Hub 
       run: |
