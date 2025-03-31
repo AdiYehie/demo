@@ -22,6 +22,7 @@ jobs:
           NEWTAG=$((COUNTER + 1))
            echo $NEWTAG >> .counter
           echo "Counter value is: $COUNTER"
+          echo "NEWTAG value is: $NEWTAG"
           echo "Counter=$COUNTER" >> $GITHUB_ENV
           echo $(whoami)
           echo $(pwd)
