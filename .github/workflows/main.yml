@@ -41,6 +41,8 @@ jobs:
 
     - name: Run Ansible Playbook for Deployment
       run: |
+        
+        cd /home/adi/demo/basicwebapp/actions-runner
         # Change image get in the playbook
         sed -i "s/webapp:${COUNTER}.0/webapp:${NEWTAG}.0/g" deploy-playbook.yml
         # Run the Ansible playbook to deploy to the VM
