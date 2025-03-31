@@ -24,6 +24,7 @@ jobs:
           echo "Counter value is: $COUNTER"
           echo "Counter=$COUNTER" >> $GITHUB_ENV
           echo $(whoami)
+          echo $(pwd)
           
     - name: Build Docker image
       run: |
