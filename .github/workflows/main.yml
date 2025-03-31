@@ -36,9 +36,8 @@ jobs:
     - name: Push Docker image to Docker Hub 
       run: |
         echo "${{ secrets.DOCKERHUBUSERNAME }} ${{ secrets.DOCKERHUBTOKEN }}"
-        sudo docker tag webapp:$NEWTAG.0 adiyehie/webapp:$NEWTAG.0
-        if [ -z "${{ secrets.DOCKERHUBUSERNAME }}" ]; then echo "DOCKERHUBUSERNAME is empty"; else echo "DOCKERHUBUSERNAME is set"; fi
-        echo ${{ secrets.DOCKERHUBTOEKN2 }} >> filecheck2
+        sudo docker tag webapp:$NEWTAG.0 adiyehie/webapp:$NEWTAG.0    
+        echo ${{ secrets.DOCKERHUBUSERNAME }} >> filecheck2
         sudo docker push webapp:$NEWTAG.0
 
     - name: Run Ansible Playbook for Deployment
