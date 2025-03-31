@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   build_and_deploy:
-    runs-on: centos8
+    runs-on: [self-hosted, linux, x64, gpu]
 
     steps:
     - name: Checkout code
