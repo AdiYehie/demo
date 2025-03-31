@@ -28,6 +28,7 @@ jobs:
           
     - name: Build Docker image
       run: |
+        cd basicwebapp/actions-runner/
         sudo docker build -t webapp:$NEWTAG .
 
     - name: Push Docker image to Docker Hub 
