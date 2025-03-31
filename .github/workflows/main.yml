@@ -35,7 +35,7 @@ jobs:
 
     - name: Push Docker image to Docker Hub 
       run: |
-         docker tag webapp:$NEWTAG.0 adiyehie/webapp:$NEWTAG.0    
+         sudo docker tag webapp:$NEWTAG.0 adiyehie/webapp:$NEWTAG.0    
          docker login -u "${{ secrets.DOCKERHUBUSERNAME }}" -p "${{ secrets.DOCKERHUBTOKEN }}" 
          sudo docker push webapp:$NEWTAG.0
 
