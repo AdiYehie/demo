@@ -23,6 +23,7 @@ jobs:
            echo $NEWTAG >> .counter
           echo "Counter value is: $COUNTER"
           echo "Counter=$COUNTER" >> $GITHUB_ENV
+          echo whoami
           
     - name: Build Docker image
       run: |
