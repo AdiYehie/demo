@@ -13,6 +13,7 @@ jobs:
       uses: actions/checkout@v2  # Checkout the repository code
     - name: Set up the counter
       run: |
+        cd /home/adi/demo/basicwebapp/actions-runner
         COUNTER_FILE=".counter"
         if [ -f "$COUNTER_FILE" ]; then
           COUNTER=$(cat "$COUNTER_FILE")
