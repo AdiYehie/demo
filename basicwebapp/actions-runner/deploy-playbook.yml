@@ -1,0 +1,44 @@
+---
+- name: Deploy webapp container
+  hosts: runners
+  become: true
+  tasks:
+
+    - name: Add Docker repository
+      command: >
+        yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+    - name: Install requierd pakceges
+      yum:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - python3-requests
+
+        state: latest
+
+    - name: Start and enable docker
+      service: 
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pull Docker image from Docker Hub
+      docker_image:
+        name: docker.io/adiyehie/webapp:17.0
+        source: pull
+
+    - name: Remove any existing container named "cicdemo"
+      docker_container:
+        name: cicdemo
+        state: absent
+
+    - name: Run the app container 
+      docker_container:
+        name: cicdemo
+        image: adiyehie/webapp:17.0
+        state: started
+        published_ports: 
+          - "80:80"

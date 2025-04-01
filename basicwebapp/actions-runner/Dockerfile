@@ -7,5 +7,3 @@ COPY . /usr/share/nginx/html
 # Expose port 80 (default HTTP port)
 EXPOSE 80
 
-# The default command to run Nginx
-CMD ["nginx", "-g", "daemon off;"]
