@@ -27,7 +27,7 @@
 
     - name: Pull Docker image from Docker Hub
       docker_image:
-        name: docker.io/adiyehie/webapp:17.0
+        name: docker.io/adiyehie/webapp:18.0
         source: pull
 
     - name: Remove any existing container named "cicdemo"
@@ -38,7 +38,7 @@
     - name: Run the app container 
       docker_container:
         name: cicdemo
-        image: adiyehie/webapp:17.0
+        image: adiyehie/webapp:18.0
         state: started
         published_ports: 
           - "80:80"
