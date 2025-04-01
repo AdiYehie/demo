@@ -22,12 +22,8 @@ jobs:
         fi
           NEWTAG=$((COUNTER + 1))
           echo $NEWTAG > .counter
-          echo "COUNTER value is: $COUNTER.0"
-          echo "NEWTAG value is: $NEWTAG.0"
           echo "COUNTER=$COUNTER" >> $GITHUB_ENV
           echo "NEWTAG=$NEWTAG" >> $GITHUB_ENV
-          echo $(whoami)
-          echo $(pwd)
           
     - name: Build Docker image
       run: |
@@ -42,11 +38,8 @@ jobs:
 
     - name: Run Ansible Playbook for Deployment
       run: |
-        
         cd /home/adi/demo/basicwebapp/actions-runner
         # Change image get in the playbook
-        echo "Counter value is: $COUNTER.0"
-        echo "NEWTAG value is: $NEWTAG.0"
         sed -i "s/webapp:${COUNTER}.0/webapp:${NEWTAG}.0/g" deploy-playbook.yml
         # Run the Ansible playbook to deploy to the VM
         ansible-playbook -i inventory.ini deploy-playbook.yml -u vagrant
